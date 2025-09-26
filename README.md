@@ -8,7 +8,7 @@ Transformer-based sequential recommender system have achieved strong results acr
 
 All datasets are stored in the `src/data` folder.
 
-- **Beauty, Sports, Toys, Yelp**: Downloaded from [this repository](https://github.com/Woeee/FMLP-Rec).  
+- **Yelp**: Downloaded from [this repository](https://github.com/Woeee/FMLP-Rec).  
 - **ML-1M, LastFM**: Processed using the procedure from [this code](https://github.com/RUCAIBox/CIKM2020-S3Rec/blob/master/data/data_process.py).  
 
 Additionally:  
@@ -37,14 +37,14 @@ python main.py  --data_name [DATASET]
                 --train_name [LOG_NAME]
 ```
 
-**Example (LastFM):**
+**Example (ML-1M):**
 ```bash
-python main.py  --data_name LastFM
+python main.py  --data_name ML-1M
                 --lr 0.001
                 --alpha 0.7
                 --c 5
                 --num_attention_heads 1
-                --train_name BSARec_LastFM
+                --train_name BSARec_ML-1M
 ```
 
 ---
@@ -65,11 +65,11 @@ python main.py  --data_name [DATASET]
 
 **Example (LastFM):**
 ```bash
-python main.py  --data_name LastFM
+python main.py  --data_name ML-1M
                 --alpha 0.7
                 --c 5
                 --num_attention_heads 1
-                --load_model BSARec_Beauty_best
+                --load_model BSARec_ML-1M_best
                 --do_eval
 ```
 
@@ -84,7 +84,10 @@ To train baselines, set the `model_type` argument:
 Check hyperparameters in `src/utils.py` (`parse_args()` function).
 
 ```bash
-python main.py  --model_type SASRec                 --data_name Beauty                 --num_attention_heads 1                 --train_name SASRec_Beauty
+python main.py  --model_type SASRec
+                 --data_name ML-1M
+                 --num_attention_heads 1
+                 --train_name SASRec_ML-1M
 ```
 
 ---
