@@ -91,9 +91,9 @@ Check hyperparameters in `src/utils.py` (`parse_args()` function).
 
 ```bash
 python main.py  --model_type SASRec
-                 --data_name ML-1M
-                 --num_attention_heads 1
-                 --train_name SASRec_ML-1M
+                --data_name ML-1M
+                --num_attention_heads 1
+                --train_name SASRec_ML-1M
 ```
 
 ---
