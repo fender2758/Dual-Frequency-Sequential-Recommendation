@@ -16,7 +16,7 @@ Additionally:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Environment Setup
 
@@ -89,6 +89,6 @@ python main.py  --model_type SASRec                 --data_name Beauty          
 
 ---
 
-## 🙏 Acknowledgement
+## Acknowledgement
 
 This repository is based on [BSARec](https://github.com/yehjin-shin/BSARec).  
