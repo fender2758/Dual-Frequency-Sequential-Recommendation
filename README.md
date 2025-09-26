@@ -1,10 +1,6 @@
 # Dual-Frequency Sequential Recommendation (DuFTRec)
 
-Transformer-based sequential recommender systems have achieved strong results across a wide range of next-item prediction tasks. However, most advances have been calibrated to **sparse interaction logs**.  
-
-As modern platforms accumulate **dense histories** with higher coverage and co-occurrence rates, self-attention exhibits **low-pass characteristics** that degrade separability among items displayed within the same impression set.  
-
-To address this, we present **DuFTRec**, a sequential recommendation model specifically designed for **dense user–item matrices**.  
+Transformer-based sequential recommender system have achieved strong results across a wide range of next-item prediction tasks. However, most advances have been calibrated to sparse interaction logs. As modern platforms accumulate dense histories with higher coverage and co-occurrencerates, self-attention exhibits low-pass characteristics that degrade separability among items displayed within the same impression set. In this paper, we present DuFTRec a sequential recommendation model specifically designed to handle dense user-item matrices. The proposed model introduces density aware spectralattention. Sequences are decomposed into low-and high-frequency components, each learned with band-specific self attention, then fused by a density-conditioned gate to avoid scale mixing. This design preserves fine-grained signals in dense interaction matrices and strengthens separability within impression sets. Our model consistently improves top-𝐾 ranking quality(e.g., NDCG@K,HR@K) over strong Transformer baselines in dense regimes while maintaining competitive complexity.
 
 ---
 
@@ -12,8 +8,8 @@ To address this, we present **DuFTRec**, a sequential recommendation model speci
 
 All datasets are stored in the `src/data` folder.
 
-- **Beauty, Sports, Toys, Yelp**: Downloaded from [FMLP-Rec](https://github.com/Woeee/FMLP-Rec).  
-- **ML-1M, LastFM**: Processed using the procedure from [S3Rec](https://github.com/RUCAIBox/CIKM2020-S3Rec/blob/master/data/data_process.py).  
+- **Beauty, Sports, Toys, Yelp**: Downloaded from [this repository](https://github.com/Woeee/FMLP-Rec).  
+- **ML-1M, LastFM**: Processed using the procedure from [this code](https://github.com/RUCAIBox/CIKM2020-S3Rec/blob/master/data/data_process.py).  
 
 Additionally:  
 - `src/data/*_same_target.npy` files are used for training **DuoRec** and **FEARec**, which both incorporate contrastive learning.  
@@ -33,12 +29,22 @@ docker build -t duftrec:latest .
 
 Run the following command:
 ```bash
-python main.py  --data_name [DATASET]                 --lr [LEARNING_RATE]                 --alpha [ALPHA]                 --c [C]                 --num_attention_heads [N_HEADS]                 --train_name [LOG_NAME]
+python main.py  --data_name [DATASET]
+                --lr [LEARNING_RATE]
+                --alpha [ALPHA]
+                --c [C]
+                --num_attention_heads [N_HEADS]
+                --train_name [LOG_NAME]
 ```
 
 **Example (LastFM):**
 ```bash
-python main.py  --data_name LastFM                 --lr 0.001                 --alpha 0.7                 --c 5                 --num_attention_heads 1                 --train_name BSARec_LastFM
+python main.py  --data_name LastFM
+                --lr 0.001
+                --alpha 0.7
+                --c 5
+                --num_attention_heads 1
+                --train_name BSARec_LastFM
 ```
 
 ---
@@ -49,12 +55,22 @@ Place the pretrained model (`.pt` file) in `src/output`.
 Use the model name **without the `.pt` extension**.  
 
 ```bash
-python main.py  --data_name [DATASET]                 --alpha [ALPHA]                 --c [C]                 --num_attention_heads [N_HEADS]                 --load_model [PRETRAINED_MODEL_NAME]                 --do_eval
+python main.py  --data_name [DATASET]
+                --alpha [ALPHA]
+                --c [C]
+                --num_attention_heads [N_HEADS]
+                --load_model [PRETRAINED_MODEL_NAME]
+                --do_eval
 ```
 
 **Example (LastFM):**
 ```bash
-python main.py  --data_name LastFM                 --alpha 0.7                 --c 5                 --num_attention_heads 1                 --load_model BSARec_Beauty_best                 --do_eval
+python main.py  --data_name LastFM
+                --alpha 0.7
+                --c 5
+                --num_attention_heads 1
+                --load_model BSARec_Beauty_best
+                --do_eval
 ```
 
 ---
