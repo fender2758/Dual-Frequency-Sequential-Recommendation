@@ -13,7 +13,13 @@ All datasets are stored in the `src/data` folder.
 
 Additionally:  
 - `src/data/*_same_target.npy` files are used for training **DuoRec** and **FEARec**, which both incorporate contrastive learning.  
+### Dataset Statistics and Density Indicators
 
+| Dataset | #Users | #Items | #Inter. | Avg. len | Sparsity |
+|---------|--------|--------|---------|----------|----------|
+| ML-1M   | 6,041  | 3,417  | 999,611 | 165.5    | 95.16%   |
+| LastFM  | 1,090  | 3,646  | 52,551  | 48.2     | 98.68%   |
+| Yelp    | 30,431 | 20,033 | 316,354 | 10.4     | 99.95%   |
 ---
 
 ## Quick Start
